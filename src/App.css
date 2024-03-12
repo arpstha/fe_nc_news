@@ -5,7 +5,9 @@
 }
 a {
     color: rgb(194, 4, 4);
-    
+}
+h2{
+    color: rgb(194, 4, 4);
 }
 body{
     background-color: rgba(229, 219, 219, 0.5);
@@ -100,4 +102,16 @@ body{
 .article-box h3{
     text-wrap: 10;
    
+}
+
+.comment-box {
+    width: 500px;
+    background-color: rgb(232, 236, 238);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
