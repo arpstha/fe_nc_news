@@ -33,7 +33,7 @@ body{
 }
 
 .App {
-    width: auto;
+    width: 800px;
     height: auto;
    
   
@@ -62,9 +62,35 @@ body{
     flex-direction: column;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
+.single-article-box {
+    
+    background-color: rgb(232, 236, 238);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+.grid-box {
+    display: grid;
+    grid-template-columns: auto; /* Text takes up auto space, image takes up 300px */
+    grid-column-gap: 20px; /* Add some space between text and image */
+    align-items: center; /* Center items vertically */
+}
+
+.grid-column-1 {
+    grid-column: 1; /* Text appears in the first column */
+}
+
+.grid-column-2 {
+    grid-column: 2; /* Image appears in the second column */
+   
+}
 
 .article-box img {
-    border-radius: 8px;
+    border-radius: 5em;
     align-self: flex-end; 
     width: 200px;
     height: 160px;
