@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getArticlesByID } from "../utils/api";
+import { getArticlesByID, patchArticleVote } from "../utils/api";
 import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 
@@ -10,6 +10,8 @@ const ArticleCard = (params) => {
     const [isLoading, setIsLoading] = useState(true)
     const [date, setDate] = useState('')
     const [time, setTime] = useState('')
+    const [patchError, setPatchError] = useState(false)
+   
     
    
     useEffect(()=>{
@@ -23,7 +25,36 @@ const ArticleCard = (params) => {
             setIsLoading(false);
         })
     }, []);
-  
+
+    const increaseArticleVote = () => {
+        setPatchError(false)
+        setArticle((currArticle)=> {
+            return {...currArticle, votes: currArticle.votes + 1}
+        })
+        patchArticleVote(article_id, 1)
+        .catch((err)=>{
+            setPatchError(true)
+            setArticle((currArticle)=> {
+                return {...currArticle, votes: currArticle.votes - 1}
+            })
+            
+        })
+    }
+    
+    const decreaseArticleVote = () => {
+        setPatchError(false)
+        setArticle((currArticle)=> {
+            return {...currArticle, votes: currArticle.votes - 1}
+        })
+        patchArticleVote(article_id, -1)
+        .catch((err)=>{
+            setPatchError(true)
+            setArticle((currArticle)=> {
+                return {...currArticle, votes: currArticle.votes + 1}
+            })
+        })
+    }
+
     return <>{isLoading ? (
         <div className="loading">
             <h2>Loading!!!</h2>
@@ -42,7 +73,12 @@ const ArticleCard = (params) => {
             <div className="grid-column-2">
                 <img src={article.article_img_url}  style={{width:'300px', height:'250px'}}/>
                 <br/>
-                <h5>Article Votes: {article.votes}</h5>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                <button onClick={increaseArticleVote}>👍</button>
+                <h5 style={{ margin: '0 10px' }}>Article Votes: {article.votes}</h5>
+                <button onClick={decreaseArticleVote}>👎</button>
+                </div>
+                {patchError?<p>Something Went Wrong!</p>: null}
             </div>
             </div>  
             <CommentCard article_id={article_id}/>
