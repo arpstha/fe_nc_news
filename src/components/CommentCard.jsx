@@ -20,7 +20,6 @@ const CommentCard = (params) => {
             })
           })
     },[])
-    console.log(date)
 
     return <div className="commnet-list-container">
         {commentList.map((comment, index) => (
