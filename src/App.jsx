@@ -5,7 +5,10 @@ import Header from './components/Header';
 import Nav from './components/Nav';
 import Homepage from './components/Homepage';
 import ArticleCard from './components/ArticleCard';
+import Topics from './components/Topics';
 import { UserProvider } from './contexts/User';
+import TopicCard from './components/TopicCard';
+
 
 function App() {
     return (
@@ -15,8 +18,10 @@ function App() {
         <UserProvider>
           <Routes>
             <Route path='/' element={<Homepage />} />
-            <Route path='/topic' element={<Nav />} />
+            <Route path='/topics' element={<Topics />} />
+            <Route path='/articles' element={<TopicCard />} />
             <Route path='/article/:article_id' element={<ArticleCard />} />
+            
           </Routes>
         </UserProvider>
       </div>
