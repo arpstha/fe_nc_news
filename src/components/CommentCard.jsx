@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getCommentsByarticleId } from "../utils/api";
 import PostComment from "./PostComment";
+import DeleteComment from "./DeleteComment";
+import { CommentContext } from "../contexts/CommentList";
 
 const CommentCard = (params) => {
     const {article_id} = params
@@ -22,23 +24,22 @@ const CommentCard = (params) => {
           })
     },[])
 
-    return <>
+    return <CommentContext.Provider value={{commentList : commentList, setCommentList: setCommentList}}>
             <PostComment commentList = {commentList} setCommentList = {setCommentList} article_id = {article_id}/>
             <div className="commnet-list-container">
                 {commentList.map((comment, index) => (
-                <div className="comment-box" key={index}>
-                    <div className="comment-details">
-                        <h5>{comment.author} | {date[index]} {time[index]} </h5>
-                        <p> {comment.body}</p>
-                        <h5>Votes: {comment.votes}</h5>
-                       
+                    <div className="comment-box" key={index}>
+                        <div className="comment-details">
+                            <h5>{comment.author} | {date[index]} {time[index]} </h5>
+                            <p> {comment.body}</p>
+                            <h5>Votes: {comment.votes}</h5>
+                            <DeleteComment commentList = {commentList} setCommentList = {setCommentList} author = {comment.author} comment_id = {comment.comment_id}/>
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
+            </div>
 
-    
-        </div>
-        </>
+        </CommentContext.Provider>
 }
 
 export default CommentCard
