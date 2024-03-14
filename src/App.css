@@ -123,3 +123,6 @@ body{
     color: red;
 
 }
+.delete-button {
+    margin-left: 10px; 
+}

@@ -36,3 +36,9 @@ export const postCommentByArticle_id = (article_id, username, body) =>{
     })
 }
 
+export const deleteCommentByComment_id = (comment_id) => {
+    return axios.delete(`https://nc-news-6vx3.onrender.com/api/comments/${comment_id}`)
+    .then((response)=>{
+        return response.data
+    })
+}
