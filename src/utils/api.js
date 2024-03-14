@@ -29,3 +29,10 @@ export const patchArticleVote = (article_id, vote) => {
     })
 }
 
+export const postCommentByArticle_id = (article_id, username, body) =>{
+    return axios.post(`https://nc-news-6vx3.onrender.com/api/articles/${article_id}/comments`,{username: username, body: body})
+    .then((response)=>{
+        return response.data
+    })
+}
+

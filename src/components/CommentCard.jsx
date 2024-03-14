@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCommentsByarticleId } from "../utils/api";
+import PostComment from "./PostComment";
 
 const CommentCard = (params) => {
     const {article_id} = params
@@ -21,8 +22,10 @@ const CommentCard = (params) => {
           })
     },[])
 
-    return <div className="commnet-list-container">
-        {commentList.map((comment, index) => (
+    return <>
+            <PostComment commentList = {commentList} setCommentList = {setCommentList} article_id = {article_id}/>
+            <div className="commnet-list-container">
+                {commentList.map((comment, index) => (
                 <div className="comment-box" key={index}>
                     <div className="comment-details">
                         <h5>{comment.author} | {date[index]} {time[index]} </h5>
@@ -35,6 +38,7 @@ const CommentCard = (params) => {
 
     
         </div>
+        </>
 }
 
 export default CommentCard
