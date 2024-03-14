@@ -3,6 +3,7 @@ import { getArticlesByID, patchArticleVote } from "../utils/api";
 import { useParams } from "react-router-dom";
 import CommentCard from "./CommentCard";
 
+
 const ArticleCard = (params) => {
     const { article_id } = useParams();
     
@@ -80,8 +81,9 @@ const ArticleCard = (params) => {
                 </div>
                 {patchError?<p>Something Went Wrong!</p>: null}
             </div>
-            </div>  
-            <CommentCard article_id={article_id}/>
+            </div> 
+            
+            <CommentCard article_id={article_id} />
         </div>
         )
     }

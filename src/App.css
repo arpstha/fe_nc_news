@@ -115,3 +115,11 @@ body{
     flex-direction: column;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+.post-comment{
+    margin-bottom: 15px;
+}
+
+.error{
+    color: red;
+
+}
