@@ -5,6 +5,7 @@ import { getAllArticles } from "../utils/api";
 const TopicCard = () => {
     const [searchParams] = useSearchParams()
     const topic = searchParams.get('topic')
+    const [noArticles, setNoArticles] = useState(false)
 
     const [articleList, setArticleList] = useState([])
     const [isLoading, setIsLoading] = useState(true)
@@ -22,6 +23,9 @@ const TopicCard = () => {
         setIsLoading(true)
         getAllArticles(topic)
         .then((data)=>{
+            if(data.length === 0){
+                setNoArticles(true)
+            }
             data.forEach((article) => {
                 //re-formating data and time 
                 return article.created_at = (`${article.created_at.slice(0,10)} ${article.created_at.slice(11,16)}`) 
@@ -52,7 +56,7 @@ const TopicCard = () => {
         <div className="loading">
             <h2>Loading!!!</h2>
         </div>
-    ) : (
+    ) : (<> {noArticles? <h2>There is no articles with "{topic}" topic.</h2> :
         <div className="article-list-container">
             <h2>Articles on {topic}:</h2>
 
@@ -83,7 +87,8 @@ const TopicCard = () => {
                 </div>
             ))}
         </div>
-    );
+}
+        </>);
 }
 
 export default TopicCard;
