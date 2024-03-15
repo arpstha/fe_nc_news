@@ -8,6 +8,7 @@ import ArticleCard from './components/ArticleCard';
 import Topics from './components/Topics';
 import { UserProvider } from './contexts/User';
 import TopicCard from './components/TopicCard';
+import ErrorPage from './components/ErrorPage';
 
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
             <Route path='/topics' element={<Topics />} />
             <Route path='/articles' element={<TopicCard />} />
             <Route path='/article/:article_id' element={<ArticleCard />} />
-            
+            <Route path='*' element={<ErrorPage />} />
           </Routes>
         </UserProvider>
       </div>
